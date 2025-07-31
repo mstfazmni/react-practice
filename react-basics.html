@@ -14,54 +14,52 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     <script type="text/babel">
 
+      function Counter({ count, setCount }) {
+
+      function increaseHandler() {
+        setCount(count + 1)
+      }
+      return (
+        <>
+          <button
+            onClick={increaseHandler}>
+            Clicked {count} {count === 1 ? "time" : "times"}
+          </button>
+        </>
+      );
+     };
 
 
      function App() {
-      return (
+      const [count, setCount] = React.useState(0);
+
+      function resetHandler() {
+        setCount(0);
+      };
+
+      return (  
         <>
-          <ProductDetails 
-            imageSrc="https://supersimple.dev/images/cotton-socks.png"
-            name="Cotton socks"
-            price="10.90"
-            discountPrice="5.45"
+          <Counter 
+          count={count} 
+          setCount={setCount}
           />
-           <ProductDetails 
-            imageSrc="https://supersimple.dev/images/tennis-balls.png"
-            name="Tennis balls"
-            price="6.00"
+
+          <Counter 
+          count={count} 
+          setCount={setCount}
           />
-           <ProductDetails 
-            imageSrc="https://supersimple.dev/images/plain-t-shirt.png"
-            name="Plain T-Shirt"
-            price="7.99"
-          />
+
+           <button onClick={resetHandler}>
+            Reset  
+          </button>
         </>
-      );
+      )
      }; 
 
-     function ProductDetails({name, price, discountPrice, imageSrc}) {
-        return (
-          <>
-          <img src={imageSrc}/>
-            <p>{name}</p>
-            
-            {discountPrice ? (
-              <>
-                <del><p>Price: ${price}</p></del>
-                <p>Discount price: {discountPrice}</p>
-              </>
-              ) : (
-                <p>Price: ${price}</p>
-              )} 
-
-            <button>Add to Cart</button>
-          </>
-        );
-     }
       
       const container = document.querySelector('.js-container');
       const root = ReactDOM.createRoot(container);
-      root.render(App());
+      root.render(<App />);
       
     
     </script>
