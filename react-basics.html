@@ -14,44 +14,48 @@
     <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     <script type="text/babel">
 
-      function Counter({ count, setCount }) {
-
-      function increaseHandler() {
-        setCount(count + 1)
-      }
-      return (
-        <>
-          <button
-            onClick={increaseHandler}>
-            Clicked {count} {count === 1 ? "time" : "times"}
-          </button>
-        </>
-      );
-     };
-
 
      function App() {
-      const [count, setCount] = React.useState(0);
+      const [inputText, setInputText] = React.useState('');
+
+      function inputHandler(event) {
+        setInputText(event.target.value);
+      };
 
       function resetHandler() {
-        setCount(0);
+        setInputText('');
       };
+
+      function exampleHandler() {
+        setInputText('Alice');
+      };
+
+      function keyboardHandler(event) {
+        if (event.key === "Enter") {
+          alert("Enter was pressed!!!");
+        } else if (event.key === "Escape"){
+          resetHandler();
+        }
+      }
 
       return (  
         <>
-          <Counter 
-          count={count} 
-          setCount={setCount}
+          <input 
+            onChange={inputHandler}
+            placeholder="Type a name here"
+            value={inputText}
+            onKeyDown={keyboardHandler}
           />
 
-          <Counter 
-          count={count} 
-          setCount={setCount}
-          />
-
-           <button onClick={resetHandler}>
-            Reset  
+          <button onClick={resetHandler}>
+            Reset
           </button>
+
+          <button onClick={exampleHandler}>
+            Example
+          </button>
+
+          <p>Hello {inputText}</p>
         </>
       )
      }; 
