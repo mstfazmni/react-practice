@@ -3,20 +3,7 @@
   <head>
     <title>React Basics</title>
     <style>
-      .button-on{
-        background-color: rgb(25, 135, 84);
-        padding: 20px 28px;
-        border: none;
-        border-radius: 10px;
-        color: white;
-      }
-      .button-off{
-        background-color: rgb(220, 53, 69);
-        padding: 20px 28px;
-        border: none;
-        border-radius: 10px;
-        color: white;
-      }
+
     </style>
   </head>
   <body>
@@ -32,19 +19,21 @@
 
 
      function App() {
-      const [isButtonOn, setIsButtonOn] = React.useState(false);
-
-      function buttonHandler() {
-        setIsButtonOn(!isButtonOn);
-      };
-
+      const [showPassword, setShowPassword] = React.useState(true);
+   
+      function showHandler() {
+        setShowPassword(!showPassword);
+      }
       return (  
         <>
-          <button 
-            className={!isButtonOn ? "button-off" : "button-on"} 
-            onClick={buttonHandler}>
-            {isButtonOn ? `ON` : `OFF`}
-          </button>
+          <h2>Hello, welcome to my website</h2>
+          <div>
+            <input placeholder="Email" type="email"/><br/>
+            <input placeholder="Password" type={showPassword ? "password" : "text"}/>
+            <button onClick={showHandler}>Show</button>
+          </div>
+          <button>Login</button>
+          <button>Sign up</button>
         </>
       )
      }; 
