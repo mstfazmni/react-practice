@@ -10,30 +10,21 @@
     <div class="js-container"></div>
     
 
+    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
+
     <script src="https://unpkg.com/supersimpledev/react.js"></script>
     <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    <script src="https://unpkg.com/supersimpledev/dayjs.js"></script>
     <script type="text/babel">
-
+    
 
      function App() {
-      const [showPassword, setShowPassword] = React.useState(true);
-   
-      function showHandler() {
-        setShowPassword(!showPassword);
-      }
+     
+      
+
       return (  
         <>
-          <h2>Hello, welcome to my website</h2>
-          <div>
-            <input placeholder="Email" type="email"/><br/>
-            <input placeholder="Password" type={showPassword ? "password" : "text"}/>
-            <button onClick={showHandler}>Show</button>
-          </div>
-          <button>Login</button>
-          <button>Sign up</button>
         </>
       )
      }; 
