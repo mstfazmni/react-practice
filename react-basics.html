@@ -20,11 +20,44 @@
     
 
      function App() {
-     
+     const [numberOfClicks, setNumberOfClicks] = React.useState(0);
+     const buttonRef = React.useRef();
+
+      function clickedHandler() {
+        setNumberOfClicks(numberOfClicks + 1);
+      };
+      
+      function resetHandler() {
+        setNumberOfClicks(0);
+      };
+
+      function autoClick() {
+        setInterval(() => {
+          const buttonElm = buttonRef.current;
+          if(buttonElm) {
+            buttonElm.click();
+          }
+        }, 1000)
+      };
       
 
       return (  
         <>
+          <button 
+            ref={buttonRef}
+            onClick={clickedHandler}>
+            Clicked {numberOfClicks} {numberOfClicks === 1 ? 'time' : 'times'}
+          </button>
+
+          <button 
+            onClick={resetHandler}>
+            Reset
+          </button>
+
+          <button 
+            onClick={autoClick}>
+            Auto Click
+          </button>
         </>
       )
      }; 
